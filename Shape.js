@@ -102,7 +102,7 @@ class Shape {
         this.fieldWidth = fieldWidth;
     }
 
-    draw() {
+    draw() { // Фигура рисует сама себя
         for (let i = 0; i < this.coords['x'].length; i++) {
             this.ctx.strokeStyle = 'black';
             this.ctx.fillStyle = this.color;
