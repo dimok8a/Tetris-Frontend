@@ -6,7 +6,7 @@ class Shape {
             x: new Array(4).fill(0),
             y: new Array(4).fill(0)
         }
-        switch (type) {
+        switch (type) { // В зависимости от типа фигуры выбираем ее цвет и начальные координаты
             case "O":
                 this.color = 'yellow'
                 this.coords['x'][0] = (Math.floor(fieldWidth / boxSize / 2)) * boxSize
