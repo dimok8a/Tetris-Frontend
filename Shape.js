@@ -11,10 +11,10 @@ class Shape {
         switch (type) {
             case "O":
                 this.color = 'yellow'
-                this.coords['x'][0] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][1] = this.startX + (Math.floor(fieldWidth / boxSize / 2) + 1) * boxSize
-                this.coords['x'][2] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][3] = this.startX + (Math.floor(fieldWidth / boxSize / 2) + 1) * boxSize
+                this.coords['x'][0] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][1] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) + 1) * boxSize
+                this.coords['x'][2] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][3] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) + 1) * boxSize
                 this.coords['y'][0] = this.startY;
                 this.coords['y'][1] = this.startY;
                 this.coords['y'][2] = this.startY + boxSize;
@@ -22,10 +22,10 @@ class Shape {
                 break;
             case "I":
                 this.color = 'cyan'
-                this.coords['x'][0] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][1] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][2] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][3] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
+                this.coords['x'][0] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][1] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][2] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][3] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
                 this.coords['y'][0] = this.startY;
                 this.coords['y'][1] = this.startY + boxSize;
                 this.coords['y'][2] = this.startY + 2 * boxSize;
@@ -33,10 +33,10 @@ class Shape {
                 break;
             case "T":
                 this.color = 'magenta'
-                this.coords['x'][0] = this.startX + (Math.floor(fieldWidth / boxSize / 2) - 1) * boxSize
-                this.coords['x'][1] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][2] = this.startX + (Math.floor(fieldWidth / boxSize / 2) + 1) * boxSize
-                this.coords['x'][3] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
+                this.coords['x'][0] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) - 1) * boxSize
+                this.coords['x'][1] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][2] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) + 1) * boxSize
+                this.coords['x'][3] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
                 this.coords['y'][0] = this.startY;
                 this.coords['y'][1] = this.startY;
                 this.coords['y'][2] = this.startY;
@@ -44,10 +44,10 @@ class Shape {
                 break;
             case "J":
                 this.color = 'blue'
-                this.coords['x'][0] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][1] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][2] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][3] = this.startX + (Math.floor(fieldWidth / boxSize / 2) - 1) * boxSize
+                this.coords['x'][0] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][1] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][2] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][3] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) - 1) * boxSize
                 this.coords['y'][0] = this.startY;
                 this.coords['y'][1] = this.startY + boxSize;
                 this.coords['y'][2] = this.startY + 2 * boxSize;
@@ -55,10 +55,10 @@ class Shape {
                 break;
             case "L":
                 this.color = 'orange'
-                this.coords['x'][0] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][1] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][2] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][3] = this.startX + (Math.floor(fieldWidth / boxSize / 2) + 1) * boxSize
+                this.coords['x'][0] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][1] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][2] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][3] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) + 1) * boxSize
                 this.coords['y'][0] = this.startY;
                 this.coords['y'][1] = this.startY + boxSize;
                 this.coords['y'][2] = this.startY + 2 * boxSize;
@@ -66,10 +66,10 @@ class Shape {
                 break;
             case "S":
                 this.color = 'lime'
-                this.coords['x'][0] = this.startX + (Math.floor(fieldWidth / boxSize / 2) + 1) * boxSize
-                this.coords['x'][1] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][2] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][3] = this.startX + (Math.floor(fieldWidth / boxSize / 2) - 1) * boxSize
+                this.coords['x'][0] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) + 1) * boxSize
+                this.coords['x'][1] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][2] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][3] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) - 1) * boxSize
                 this.coords['y'][0] = this.startY;
                 this.coords['y'][1] = this.startY;
                 this.coords['y'][2] = this.startY + boxSize;
@@ -77,10 +77,10 @@ class Shape {
                 break;
             case "Z":
                 this.color = 'red'
-                this.coords['x'][0] = this.startX + (Math.floor(fieldWidth / boxSize / 2) - 1) * boxSize
-                this.coords['x'][1] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][2] = this.startX + (Math.floor(fieldWidth / boxSize / 2)) * boxSize
-                this.coords['x'][3] = this.startX + (Math.floor(fieldWidth / boxSize / 2) + 1) * boxSize
+                this.coords['x'][0] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) - 1) * boxSize
+                this.coords['x'][1] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][2] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize)) * boxSize
+                this.coords['x'][3] = (Math.floor(((fieldWidth - this.startX) / 2 + this.startX) / boxSize) + 1) * boxSize
                 this.coords['y'][0] = this.startY;
                 this.coords['y'][1] = this.startY;
                 this.coords['y'][2] = this.startY + boxSize;

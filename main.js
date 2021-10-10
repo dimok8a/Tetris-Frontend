@@ -2,7 +2,7 @@ function setup() {
     const canvas = document.querySelector('#canvas');
     const ctx = canvas.getContext('2d');
     const box = 30;
-    const W = canvas.width = 510;
+    const W = canvas.width = 540;
     const H = canvas.height = 900;
     const startY = 90;
     const startX = 150;
@@ -67,8 +67,12 @@ function setup() {
         }
         field.clear();
         field.printText(`Счет: ${score}`, (W - startX) / 2 + startX - 30, 50, 20);
-        field.drawShape(newSh, -250, 150);
-        field.printText('Next', 50, 110)
+        if (newSh == "O") {
+            field.drawShape(newSh, -520, 150);
+        } else {
+            field.drawShape(newSh, -490, 150);
+        }
+        field.printText('Next  ', 40, 110)
         // matrix = field.deleteEmptyLines();
         arShapes.forEach((sh, ind) => {
             if (emptyLines.length > 0) {
