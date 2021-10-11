@@ -1,5 +1,5 @@
 class Field {
-    constructor(ctx, sizeOfBox = 30, matrix, bgcColor = 'white', color = 'black', startX = 0, startY = 0, width = 600, height = 900) {
+    constructor(ctx, sizeOfBox = 30, matrix, bgcColor = 'white', color = 'black', startX = 0, startY = 0, width = 600, height = 900, lineWidth = 2) {
         this.ctx = ctx;
         this.sizeOfBox = sizeOfBox;
         this.matrix = matrix || new Array((height - startY) / sizeOfBox).fill(0).map(() => {
@@ -11,10 +11,12 @@ class Field {
         this.startY = startY;
         this.width = width;
         this.height = height;
+        this.lineWidth = lineWidth;
     }
 
-    draw() {
+    drawSquares() {
         this.ctx.strokeStyle = this.color;
+        this.ctx.lineWidth = this.lineWidth;
         for (let i = this.startX; i <= this.width; i += this.sizeOfBox) {
             this.ctx.beginPath();
             this.ctx.moveTo(i, this.startY);
@@ -27,6 +29,12 @@ class Field {
             this.ctx.lineTo(this.width, i);
             this.ctx.stroke();
         }
+        this.ctx.lineWidth = this.lineWidth * 2;
+        this.ctx.beginPath()
+        this.ctx.moveTo(this.width, this.startY);
+        this.ctx.lineTo(this.width, this.height);
+        this.ctx.lineTo(this.startX, this.height);
+        this.ctx.stroke();
     }
 
     printText(text = "Sample text", x = 0, y = 0, size = 20) {
@@ -40,15 +48,9 @@ class Field {
         this.ctx.fillStyle = this.bgcColor;
         this.ctx.fillRect(0, 0, this.width, this.height);
         this.ctx.stroke();
-        this.draw();
     }
 
 
-    drawShape(type, startX, startY) {
-        let shape = new Shape(this.ctx, type, this.sizeOfBox, startX, startY);
-        shape.draw();
-
-    }
     emptyLines() {
         const emptyLines = [];
         if (this.matrix && this.matrix.length > 1) {

@@ -139,15 +139,59 @@ class Shape {
     }
     draw() {
         for (let i = 0; i < this.coords['x'].length; i++) {
-            this.ctx.beginPath();
-            this.ctx.strokeStyle = 'black';
+            // this.ctx.beginPath();
+            // this.ctx.strokeStyle = 'black';
+            // this.ctx.lineWidth = 1;
             this.ctx.fillStyle = this.color;
-            this.ctx.strokeRect(this.coords['x'][i], this.coords['y'][i], this.boxSize, this.boxSize);
+            // this.ctx.moveTo(this.coords['x'][i], this.coords['y'][i]);
+            // this.ctx.lineTo(this.coords['x'][i] + this.boxSize, this.coords['y'][i]);
+            // this.ctx.lineTo(this.coords['x'][i] + this.boxSize, this.coords['y'][i] + this.boxSize);
+            // this.ctx.lineTo(this.coords['x'][i], this.coords['y'][i] + this.boxSize);
+            // this.ctx.lineTo(this.coords['x'][i], this.coords['y'][i]);
+            // this.ctx.stroke();
+            // this.ctx.strokeRect(this.coords['x'][i], this.coords['y'][i], this.boxSize, this.boxSize);
+            // this.ctx.fillRect(this.coords['x'][i] + this.ctx.lineWidth, this.coords['y'][i] + this.ctx.lineWidth, this.boxSize - this.ctx.lineWidth * 2, this.boxSize - this.ctx.lineWidth * 2);
             this.ctx.fillRect(this.coords['x'][i], this.coords['y'][i], this.boxSize, this.boxSize);
-            this.ctx.stroke();
             // this.ctx.fillStyle = "red";
             // this.ctx.fillText(i, this.coords['x'][i], this.coords['y'][i]);
         }
+    }
+
+    drawWithLines(lineWidth) {
+        for (let i = 0; i < this.coords['x'].length; i++) {
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = 'black';
+            this.ctx.lineWidth = lineWidth;
+            this.ctx.fillStyle = this.color;
+            this.ctx.fillRect(this.coords['x'][i], this.coords['y'][i], this.boxSize, this.boxSize);
+            this.ctx.moveTo(this.coords['x'][i], this.coords['y'][i]);
+            this.ctx.lineTo(this.coords['x'][i] + this.boxSize, this.coords['y'][i]);
+            this.ctx.lineTo(this.coords['x'][i] + this.boxSize, this.coords['y'][i] + this.boxSize);
+            this.ctx.lineTo(this.coords['x'][i], this.coords['y'][i] + this.boxSize);
+            this.ctx.lineTo(this.coords['x'][i], this.coords['y'][i]);
+            this.ctx.stroke();
+            // this.ctx.strokeRect(this.coords['x'][i], this.coords['y'][i], this.boxSize, this.boxSize);
+            // this.ctx.fillRect(this.coords['x'][i], this.coords['y'][i], this.boxSize, this.boxSize);
+            // this.ctx.fillStyle = "red";
+            // this.ctx.fillText(i, this.coords['x'][i], this.coords['y'][i]);
+        }
+    }
+
+    drawShadow() {
+        let shape = new Shape(this.ctx, this.type, this.boxSize, this.startX, this.startY, this.fieldWidth, this.fieldHeight, this.matrix);
+        shape.coords['x'] = this.coords['x'].slice(0, this.coords['x'].length);
+        shape.coords['y'] = this.coords['y'].slice(0, this.coords['x'].length);
+        shape.color = "#838996AC";
+        while (shape.moveDown()) {
+            shape.moveDown();
+        }
+        for (let i = 0; i < this.coords['y'].length; i++) {
+            if (shape.coords['y'].includes(this.coords['y'][i])) {
+                return;
+            }
+        }
+
+        shape.draw();
     }
     findMaxY() {
         let maxY = this.coords['y'][0];
@@ -258,24 +302,17 @@ class Shape {
             }
             return true;
         } else {
-            // console.log(maxY < this.fieldHeight - this.boxSize, this.checkMatrixDown());
-            // let tmpMatrix = this.matrix; // Иначе возвращаем матрицу фигур
-            // for (let i = 0; i < this.coords['x'].length; i++) {
-            //     tmpMatrix[this.coords['y'][i] / this.boxSize][this.coords['x'][i] / this.boxSize] = 1;
-            // }
             return false;
         }
     }
 
     checkMatrixDownBox(i) {
-
         if ((this.coords['y'][i] - this.startY) / this.boxSize + 1 < this.matrix.length) {
             if (this.matrix[(this.coords['y'][i] - this.startY) / this.boxSize + 1][(this.coords['x'][i] - this.startX) / this.boxSize] == 1) {
                 // console.log('ret1');
                 return false;
             }
         } else {
-            // console.log(this.coords['y'][i] / this.boxSize + 1);
             return false;
         }
         return true;

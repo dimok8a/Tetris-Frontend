@@ -6,8 +6,11 @@ function setup() {
     const H = canvas.height = 900;
     const startY = 90;
     const startX = 150;
+    const lineWidth = 1.5;
+    const audio = new Audio("https://zvukipro.com/uploads/files/2019-03/1553774320_aa4b773936bb0cb.mp3")
+    audio.volume = 0.7;
 
-    const field = new Field(ctx, box, undefined, 'white', 'black', startX, startY, W, H);
+    const field = new Field(ctx, box, undefined, 'white', 'black', startX, startY, W, H, lineWidth);
     field.clear();
     let shape = new Shape(ctx, randomShape(), box, startX, startY, W, H)
     shape.draw();
@@ -52,28 +55,26 @@ function setup() {
                 clearInterval(game);
                 clearInterval(move);
             }
-            // console.log(matrix);
             matrix = field.complementMatrix(shape);
-
             emptyLines = field.emptyLines();
             arShapes.push(shape);
             shape = new Shape(ctx, newSh, box, startX, startY, W, H, matrix);
-            prev = shape.type;
+            prevShape = shape.type;
             newSh = randomShape();
-            while (newSh == prev) {
+            while (newSh == prevShape) {
                 newSh = randomShape();
             }
-            // console.log(matrix['matrix']);
         }
         field.clear();
         field.printText(`Счет: ${score}`, (W - startX) / 2 + startX - 30, 50, 20);
         if (newSh == "O") {
-            field.drawShape(newSh, -520, 150);
+            let newShape = new Shape(ctx, newSh, this.sizeOfBox, -520, 150);
+            newShape.drawWithLines(field.lineWidth);
         } else {
-            field.drawShape(newSh, -490, 150);
+            let newShape = new Shape(ctx, newSh, this.sizeOfBox, -490, 150);
+            newShape.drawWithLines(field.lineWidth);
         }
         field.printText('Next  ', 40, 110)
-        // matrix = field.deleteEmptyLines();
         arShapes.forEach((sh, ind) => {
             if (emptyLines.length > 0) {
                 sh.needToDelete(emptyLines);
@@ -85,8 +86,6 @@ function setup() {
                     sh.goDown(val);
                 });
                 matrix = field.complementMatrix(sh);
-                // clearInterval(game);
-                // clearInterval(move)
             }
             if (sh !== undefined) {
                 sh.draw();
@@ -97,22 +96,27 @@ function setup() {
             switch (emptyLines.length) {
                 case 1:
                     score += 100;
+                    audio.play();
                     break;
                 case 2:
                     score += 300;
+                    audio.play();
                     break;
                 case 3:
                     score += 700;
+                    audio.play();
                     break;
                 case 4:
                     score += 1500;
+                    audio.play();
                     break;
             }
             matrix = field.deleteEmptyLines();
             emptyLines = [];
         }
-        // field.deleteEmptyLines();
         shape.draw();
+        shape.drawShadow();
+        field.drawSquares();
     }, 10)
 
     document.addEventListener('keydown', function (e) {
