@@ -1,5 +1,5 @@
 class Field {
-    constructor(ctx, sizeOfBox = 30, matrix, bgcColor = 'white', color = 'black', startX = 0, startY = 0, width = 600, height = 900, lineWidth = 2) {
+    constructor(ctx, sizeOfBox = 30, matrix, bgcColor = 'white', color = 'black', startX = 0, startY = 0, width = 600, height = 900, lineWidth = 2, additWidth = 300, additHeight = 10) {
         this.ctx = ctx;
         this.sizeOfBox = sizeOfBox;
         this.matrix = matrix || new Array((height - startY) / sizeOfBox).fill(0).map(() => {
@@ -12,6 +12,8 @@ class Field {
         this.width = width;
         this.height = height;
         this.lineWidth = lineWidth;
+        this.additWidth = additWidth;
+        this.additHeight = additHeight;
     }
 
     drawSquares() {
@@ -29,16 +31,16 @@ class Field {
             this.ctx.lineTo(this.width, i);
             this.ctx.stroke();
         }
-        this.ctx.lineWidth = this.lineWidth * 2;
-        this.ctx.beginPath()
-        this.ctx.moveTo(this.width, this.startY);
-        this.ctx.lineTo(this.width, this.height);
-        this.ctx.lineTo(this.startX, this.height);
-        this.ctx.stroke();
+        // this.ctx.lineWidth = this.lineWidth * 2;
+        // this.ctx.beginPath()
+        // this.ctx.moveTo(this.width, this.startY);
+        // this.ctx.lineTo(this.width, this.height);
+        // this.ctx.lineTo(this.startX, this.height);
+        // this.ctx.stroke();
     }
 
-    printText(text = "Sample text", x = 0, y = 0, size = 20) {
-        this.ctx.fillStyle = "black";
+    printText(text = "Sample text", x = 0, y = 0, size = 20, color = "black") {
+        this.ctx.fillStyle = color;
         this.ctx.font = `italic ${size}pt Roboto`;
         this.ctx.fillText(text, x, y, this.width / 2);
     }
@@ -46,7 +48,7 @@ class Field {
     clear() {
         this.ctx.beginPath()
         this.ctx.fillStyle = this.bgcColor;
-        this.ctx.fillRect(0, 0, this.width, this.height);
+        this.ctx.fillRect(0, 0, this.width + this.additWidth, this.height + this.additHeight);
         this.ctx.stroke();
     }
 

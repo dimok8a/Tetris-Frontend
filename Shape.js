@@ -91,6 +91,11 @@ class Shape {
         this.matrix = matrix || new Array(fieldHeight / boxSize).fill(0).map(() => {
             return new Array(fieldWidth / boxSize).fill(0)
         });
+        if (this.matrix.length == 0) {
+            this.matrix = new Array(fieldHeight / boxSize).fill(0).map(() => {
+                return new Array(fieldWidth / boxSize).fill(0)
+            });
+        }
         if (!this.checkLose()) {
             let a = confirm('You lost! Restart?');
             if (a) {
@@ -296,7 +301,7 @@ class Shape {
 
     moveDown() { // Движение фигуры вниз (возвращает true - движется дальше, false - остановка)
         let maxY = this.findMaxY();
-        if (maxY < this.fieldHeight - this.boxSize && this.checkMatrixDown() == true) { // Если не вышли за пределы и внизу нет фигуры, продолжаем движение
+        if (maxY < this.fieldHeight - this.boxSize && this.checkMatrixDown()) { // Если не вышли за пределы и внизу нет фигуры, продолжаем движение
             for (let i = 0; i < this.coords['x'].length; i++) {
                 this.coords['y'][i] += this.boxSize;
             }
