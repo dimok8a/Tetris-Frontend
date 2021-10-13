@@ -1,5 +1,3 @@
-#canvas {
-    /* border: 1px solid black; */
-    width: 540px;
-    height: 900px;
+body {
+    margin: 0;
 }
